@@ -20,7 +20,7 @@ fi
 CMD="/usr/bin/qemu-system-x86_64 \
 
 
-    -smp 8 \
+    -smp 64 \
     -enable-kvm \
     -m 8G \
     -drive file=$VMLINUX,format=qcow2,if=none,id=disk0 \

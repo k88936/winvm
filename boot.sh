@@ -5,14 +5,12 @@
 set -e
 
 # Default: no graphics
-GRAPHICS=0
 VMLINUX="win10.qcow2"
 OVMF="OVMF.4m.fd"
 
+GRAPHICS=0
 if [[ "$1" == "--debug" ]]; then
     GRAPHICS=1
-    VMLINUX="win10.qcow2"
-    OVMF="OVMF.4m.fd"
 fi
 
 

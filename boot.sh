@@ -5,8 +5,8 @@
 set -e
 
 # Default: no graphics
+VMLINUX="winvm.qcow2"
 VMLINUX="winvm.cow"
-VMLINUX="winvm2.qcow2"
 
 GRAPHICS=0
 if [[ "$1" == "--debug" ]]; then

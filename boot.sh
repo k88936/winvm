@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# Usage: boot.sh [ --debug ]
+# Usage: boot.sh [ -m ]
 
 set -e
 
 # Default: no graphics
-VMLINUX="winvm.qcow2"
 VMLINUX="winvm.cow"
-
 GRAPHICS=0
-if [[ "$1" == "--debug" ]]; then
+
+if [[ "$1" == "-m" ]]; then
+
+    VMLINUX="winvm.qcow2"
     GRAPHICS=1
 fi
 

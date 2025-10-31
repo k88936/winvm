@@ -1,0 +1,1 @@
+virt-sparsify --compress -f qcow2 winvm.qcow2 winvm-compact.qcow2

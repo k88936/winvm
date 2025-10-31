@@ -1,0 +1,1 @@
+qemu-img create -o backing_file=winvm.qcow2,backing_fmt=qcow2 -f qcow2 winvm.cow

@@ -5,29 +5,28 @@
 set -e
 
 # Default: no graphics
-VMLINUX="win10.qcow2"
-OVMF="OVMF.4m.fd"
+VMLINUX="winvm.cow"
+VMLINUX="winvm2.qcow2"
 
 GRAPHICS=0
 if [[ "$1" == "--debug" ]]; then
     GRAPHICS=1
 fi
 
-
-
-CMD="/usr/bin/qemu-system-x86_64 \
-
-
-    -smp 64 \
-    -enable-kvm \
-    -m 8G \
-    -drive file=$VMLINUX,format=qcow2,if=none,id=disk0 \
-    -drive if=pflash,format=raw,file=$OVMF \
-    -netdev user,id=net0,hostfwd=tcp::21022-:22 \
-    -device e1000,netdev=net0 \
-    -device virtio-blk-pci,drive=disk0 \
-    -device virtio-balloon-pci,id=balloon0 \
-    "
+CMD="
+qemu-system-x86_64 \
+-m 4G \
+-cpu host \
+-smp 16 \
+-enable-kvm \
+-boot order=d \
+-drive file=$VMLINUX,format=qcow2,if=none,id=disk0 \
+-device virtio-blk-pci,drive=disk0 \
+-device virtio-balloon-pci,id=balloon0 \
+-nic user,model=virtio-net-pci,hostfwd=tcp::21022-:22 \
+-device usb-ehci,id=usb,bus=pci.0 \
+-device usb-tablet \
+"
 
 if [[ $GRAPHICS -eq 1 ]]; then
     # Enable graphical output (for debugging)

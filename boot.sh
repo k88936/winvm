@@ -4,13 +4,13 @@
 
 set -e
 
-# Default: no graphics
-VMLINUX="winvm.cow"
-GRAPHICS=0
 
 if [[ "$1" == "-m" ]]; then
     VMLINUX="winvm.qcow2"
     GRAPHICS=1
+else
+    VMLINUX="winvm.cow"
+    GRAPHICS=0
 fi
 
 CMD="
@@ -30,12 +30,11 @@ qemu-system-x86_64 \
 
 if [[ $GRAPHICS -eq 1 ]]; then
     # Enable graphical output (for debugging)
-    CMD="$CMD -vga qxl -display gtk"
+    # Use VNC on localhost:5900 (display :0)
+    CMD="$CMD -display none -vga virtio -vnc 127.0.0.1:0"
 else
     # Headless mode
     CMD="$CMD -nographic"
 fi
-
 # Run command
 eval $CMD
-

@@ -4,7 +4,6 @@
 
 set -e
 
-
 if [[ "$1" == "-m" ]]; then
     VMLINUX="winvm.qcow2"
     GRAPHICS=1
@@ -15,9 +14,9 @@ fi
 
 CMD="
 qemu-system-x86_64 \
--m 8G \
+-m 4G \
 -cpu host \
--smp 64 \
+-smp 16 \
 -enable-kvm \
 -boot order=d \
 -drive file=$VMLINUX,format=qcow2,if=none,id=disk0 \

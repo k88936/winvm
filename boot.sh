@@ -14,9 +14,9 @@ fi
 
 CMD="
 qemu-system-x86_64 \
--m 4G \
+-m 6G \
 -cpu host \
--smp 16 \
+-smp 32 \
 -enable-kvm \
 -boot order=d \
 -drive file=$VMLINUX,format=qcow2,if=none,id=disk0 \

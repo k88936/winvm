@@ -13,8 +13,8 @@ fi
 sudo systemctl disable winvm
 
 # Remove service file
-if [ -f "$SERVICE_DST" ]; then
-    sudo rm "$SERVICE_DST"
+if [ -f "$SERVICE_FILE" ]; then
+    sudo rm "$SERVICE_FILE"
     echo "Removed systemd service."
 else
     echo "Service not found, skipping removal."
